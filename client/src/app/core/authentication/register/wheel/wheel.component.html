@@ -1,0 +1,13 @@
+<div class="slot-machine">
+  <div class="slot">
+    <div
+      class="slot-inner"
+      [style.transform]="'translateY(' + -slotPositions() * 34  + '%)'"
+      [class.spinning]="spinning"
+    >
+    @for (word of words; track word) {
+        <div class="display-6">{{word}}</div>
+    }
+    </div>
+  </div>
+</div>

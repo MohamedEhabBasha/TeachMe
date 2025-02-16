@@ -55,9 +55,9 @@ public class UserRepository
 
     private static User CreateUser(RegisterDto registerDto, Guid id)
     {
-        if (registerDto.Role == "student")
+        if (registerDto.Role == "Student")
             return User.CreateStudent(id, registerDto.Name, registerDto.UserName);
-        else if (registerDto.Role == "instructor")
+        else if (registerDto.Role == "Instructor")
             return User.CreateInstructor(id, registerDto.Name, registerDto.UserName);
 
         throw new Exception("Role is not correct");

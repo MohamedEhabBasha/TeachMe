@@ -1,0 +1,15 @@
+<nav class="nav navbar navbar-expand-lg px-3">
+    <div class="container-fluid">
+        <a class="logo navbar-brand text-white" href="">TeachMe</a>
+        <div class="navbar-center mt-5">
+            <img src="user.png" alt="Logo" class="nav-image">
+        </div>
+        <div class="ms-auto">
+            @if (!accountService.currentUser()){
+                <a class="get-started btn text-white" (click)="getStatred()">Get Started</a>
+            }@else {
+                <a class="get-started btn text-white" (click)="logout()">Logout</a>
+            }
+        </div>
+    </div>
+</nav>

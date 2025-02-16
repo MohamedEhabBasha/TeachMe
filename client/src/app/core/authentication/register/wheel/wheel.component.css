@@ -1,0 +1,54 @@
+.slot-machine {
+    width: 40%;
+    position: absolute;
+    left: 75%;
+    top: 40%;
+    translate: -50% -50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   /*  gap: 1rem; */
+    border-radius: 1rem;
+}
+.slot {
+    width: 100%;
+    height: 3.55rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.slot-inner {
+    display: flex;
+    flex-direction: column;
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slot-inner.spinning {
+    transition: transform 2s ease-in-out;
+}
+
+.slot-inner div {
+    font-family: "Quicksand", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+}
+
+.slot-inner div:nth-child(1) {
+    color: #e74c3c;
+    border: 5px solid #e74c3c;
+    border-radius: 0.5rem;
+}
+.slot-inner div:nth-child(2) {
+    color: var(--primary-color);
+    border: 5px solid var(--primary-color);
+    border-radius: 0.5rem;
+}
+.slot-inner div:nth-child(3) {
+    color: #2ecc71;
+    border: 5px solid #2ecc71;
+    border-radius: 0.5rem;
+}

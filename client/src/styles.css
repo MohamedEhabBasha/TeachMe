@@ -1,1 +1,126 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-color: #14213d;
+    --secondary-color: #fca311;
+    --third-color: rgba(229, 229, 229, 1);
+/*     --text-color: #333;
+    --background-color: #f5f5f5; */
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.color-gold {
+    color: #fca311;
+}
+/* ----------------- START Form Styles ----------------- */
+form {
+    width: 100%;
+    max-width: 40rem;
+    margin: 1rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.5);
+}
+.form-control,
+fieldset {
+    margin: 0.5rem 0;
+}
+.form-control {
+    border: none;
+}
+.form-control.no-margin {
+    margin-bottom: 0;
+}
+
+.form-control label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.form-control input {
+    display: block;
+    /* width: 100%; */
+    /* max-width: 15rem; */
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--primary-color);
+    /* background-color: var(--third-color); */
+    color: var(--primary-color);
+}
+.form-control select {
+    display: block;
+    width: 100%;
+    max-width: 15rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #758a8a;
+    background-color: #869999;
+    color: #142020;
+}
+.form-control:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+}
+.form-control:has(input[type="checkbox"]) label {
+    margin: 0;
+}
+.form-control input[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+    max-width: none;
+    margin-right: 0.5rem;
+    border-radius: 0;
+    border: none;
+    background-color: transparent;
+    color: #d9e2f1;
+}
+.form-control-error {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    color: #ffca99;
+    height: 1rem;
+    padding: 0.25rem 0 0 0;
+}
+
+.form-control-error p {
+    margin: 0;
+}
+
+.form-control-row {
+    margin: 0.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.form-control-row .form-control {
+    flex: 1;
+}
+
+[formgroupname].ng-invalid.ng-touched.ng-dirty label,
+.form-control:has(.ng-invalid.ng-touched.ng-dirty) label {
+    color: #f98b75;
+}
+
+[formgroupname].ng-invalid.ng-touched.ng-dirty input,
+input.ng-invalid.ng-touched.ng-dirty {
+    background-color: #fbdcd6;
+    border-color: #f84e2c;
+}
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+/* ----------------- END Form Styles ----------------- */
+

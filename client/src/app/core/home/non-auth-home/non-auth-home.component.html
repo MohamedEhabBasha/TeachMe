@@ -1,0 +1,168 @@
+<main class="main">
+  <section
+    #aboutSection
+    class="about-section d-flex align-items-center justify-content-center container-fluid"
+  >
+    <div
+      class="row w-100 h-75 d-flex align-items-center justify-content-center"
+    >
+      <div class="col-md-4 text-center">
+        <h2 #aboutText class="aboutText display-2 fw-semibold">
+          About <span class="color-gold">Us</span>
+        </h2>
+        <img #aboutImage src="user.png" alt="About Image" class="about-image" />
+      </div>
+
+      <div class="col-md-8 h-100">
+        <div
+          #aboutCard
+          class="slider d-flex justify-content-center align-items-center"
+        >
+          <video
+            class="coding-video"
+            src="coding.mp4"
+            autoplay
+            muted
+            loop
+          ></video>
+          <carousel class="w-100">
+            <slide>
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="d-md-block text-center p-5">
+                  <h3 class="fw-bold">Our Mission</h3>
+                  <p class="paragraph">
+                    We are dedicated to bridging the gap between teachers and
+                    students by providing a seamless online learning platform.
+                    Our mission is to create an interactive and accessible space
+                    where educators can share their knowledge, and students can
+                    explore, learn, and grow at their own pace.
+                  </p>
+                </div>
+              </div>
+            </slide>
+            <slide>
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="d-md-block text-center p-5">
+                  <h3 class="fw-bold">How It Works</h3>
+                  <p class="paragraph">
+                    Teachers can register on our platform, introduce themselves,
+                    and showcase their expertise. Students can browse teacher
+                    profiles, find the right instructor, and enroll in online
+                    lessons. With interactive sessions, quizzes, and
+                    personalized learning paths, education becomes engaging and
+                    efficient.
+                  </p>
+                </div>
+              </div>
+            </slide>
+            <slide>
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="d-md-block text-center p-5">
+                  <h3 class="fw-bold">Join Us Today</h3>
+                  <p class="paragraph">
+                    Whether you're an instructor looking to expand your reach or
+                    a student eager to learn, our platform is designed to
+                    support your journey. Join us today and experience a
+                    smarter, more connected way to learn and teach online!
+                  </p>
+                </div>
+              </div>
+            </slide>
+          </carousel>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    #info1Section
+    class="info-1 d-flex align-items-center justify-content-center container-fluid"
+  >
+    <video class="network-video" src="network2.mp4" autoplay muted loop></video>
+    <div class="row w-100 align-items-center">
+      <div class="col-md-5 text-center position-relative d-none d-md-block">
+        <svg
+          class="svg-earth d-none d-xl-block"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 712.671 563.724"
+          xml:space="preserve"
+        >
+          <linearGradient id="gradient">
+            <stop offset="0" stop-color="white" stop-opacity="0"></stop>
+            <stop offset="0.5" stop-color="white" stop-opacity="1"></stop>
+            <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+          </linearGradient>
+
+          <mask id="gradient-mask">
+            <rect
+              id="rect"
+              x="10"
+              y="0"
+              width="100%"
+              height="100%"
+              fill="url(#gradient)"
+            ></rect>
+          </mask>
+          <path
+            id="line-1"
+            class="line"
+            d="M102.136,207.063c0,0-132.995-301.396,148.005-163.396
+       s335,378.92,335,378.92s44.414,212.356-183.793,88.718"
+            mask="url(#gradient-mask)"
+          />
+          <path
+            id="line-2"
+            class="line"
+            d="M603.763,213.309c0,0,132.995-301.396-148.005-163.396
+       s-335,378.92-335,378.92s-44.414,212.356,183.793,88.718"
+            mask="url(#gradient-mask)"
+          />
+          <path
+            id="line-3"
+            class="line"
+            d="M565.372,111.846c0,0,307.161,119.077,10.883,220.193
+       S71.438,300.983,71.438,300.983s-181.563-118.753,67.228-192.694"
+            mask="url(#gradient-mask)"
+          />
+        </svg>
+        <img src="earth.png" alt="Earth Image" class="img-fluid rounded w-50" />
+      </div>
+      <div class="col-md-7 text-center position-relative">
+        <div class="waving-boy">
+          <app-svg-boy-waving-avatar class="d-none d-xl-block" />
+        </div>
+        <div #infoLetter class="display-6">
+          <p class="infoLetter">
+            Join a community of passionate learners and connect with
+            professional instructors from all around the world
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section #startSection class="start-section d-flex container-fluid">
+    <div #avatar class="avatar">
+      <app-svg-avatar />
+    </div>
+    <div
+      #left
+      class="left col-lg-6 d-flex align-items-center justify-content-center text-center"
+    >
+      <p class="display-6 p-5">
+        Take the next step in your learning journey!
+      </p>
+    </div>
+    <div
+      #right
+      class="right h-100 col-lg-6 d-flex justify-content-center align-items-center"
+    >
+      <img class="course-img" src="course.png" alt="" />
+      <a class="get-started btn text-white" (click)="getStatred()"
+        >Get Started <span class="now fa">NOW</span></a
+      >
+    </div>
+  </section>
+</main>

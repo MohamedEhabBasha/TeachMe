@@ -1,0 +1,73 @@
+<div class="container d-flex justify-content-center align-items-center mb-3 mt-2">
+  <div class="row w-100">
+    <div class="main">
+      <h1 class="text-center mb-3 mt-5">Register</h1>
+      <!-- class="d-flex flex-column justify-content-center align-items-center" -->
+      <form class="col-12 col-lg-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <app-text-input [formControlName]="'name'" label="Name">
+        </app-text-input>
+        <app-text-input [formControlName]="'userName'" label="Username">
+        </app-text-input>
+        <div formGroupName="passwords">
+          <app-text-input
+            [formControlName]="'password'"
+            [label]="'Password'"
+            [type]="'password'"
+          >
+          </app-text-input>
+          <app-text-input
+            [formControlName]="'confirmPassword'"
+            [label]="'Confirm password'"
+            [type]="'password'"
+          >
+          </app-text-input>
+        </div>
+        <div class="form-control no-space">
+          @if (registerForm.get('passwords')?.hasError('valuesNotEquals') &&
+          checkPasswords) {
+          <p class="form-control-error no-space">Passwords do not match</p>
+          }
+        </div>
+        <div class="form-control-row login">
+          <label class="role-label mt-1">Role: </label>
+          <label>
+            <input type="radio" class="form-check-input" value="Student" formControlName="role"> Student
+          </label>
+          <label>
+            <input type="radio" class="form-check-input" value="Instructor" formControlName="role"> Instructor
+          </label>
+        </div>
+        <div class="mt-2 login">
+          <p>
+            Already have an account?
+            <a class="text-decoration-none cursor-pointer" (click)="login()"
+              >Log in</a
+            >
+          </p>
+        </div>
+<!--         <div class="form-control no-space">
+          @if (registerForm.touched && registerForm.dirty &&
+          registerForm.invalid){
+          <p class="form-control-error no-space">Invalid Form Data</p>
+          }
+        </div> -->
+        @if (serverValidationErrors()) {
+          <div class="alert alert-danger text-start">
+            <ul>
+                <li>{{serverValidationErrors()}}</li>
+            </ul>
+          </div>
+        }
+        <p class="form-actions">
+          <button type="button" class="button button-flat" (click)="onRest()">
+            Reset
+          </button>
+          <button [disabled]="!registerForm.valid" type="submit" class="button">
+            Register
+          </button>
+        </p>
+        <app-wheel class="wheel" [formState]="formState()" />
+      </form>
+    </div>
+  </div>
+</div>

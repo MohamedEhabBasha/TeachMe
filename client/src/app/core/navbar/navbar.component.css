@@ -1,0 +1,23 @@
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.nav-image {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: #14213d;
+    border: 5px solid #fca311;
+    z-index: 3;
+}
+.nav {
+    background-color: #14213d;
+}
+.get-started {
+    background-color: #fca311;
+}
+.logo {
+    font-size: 1.5rem;
+}
