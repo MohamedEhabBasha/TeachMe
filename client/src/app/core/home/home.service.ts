@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { gsap } from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
   providedIn: 'root'
 })
 export class HomeService {
+  main =  signal<HTMLElement | null>(null);
 
   constructor() {
 
@@ -122,5 +123,58 @@ export class HomeService {
       scrub: 1,
       //snap: 1,
     })
+  }
+  public animateHomeParallax(layer1: HTMLElement, layer2: HTMLElement, layer3: HTMLElement, layer4: HTMLElement) {
+    let start = "top 0%" 
+    let end = "bottom 80%";
+    gsap.to(layer1, {
+      y: -100, // Moves up
+      scrollTrigger: {
+          trigger: this.main(),
+          start: start,
+          end: end,
+          scrub: true
+      }
+    });
+    gsap.to(layer2, {
+      y: -250, // Moves up
+      scrollTrigger: {
+          trigger: this.main(),
+          start: start,
+          end: end,
+          scrub: true
+      }
+    });
+    gsap.to(layer3, {
+      y: -600, // Moves up
+      scrollTrigger: {
+          trigger: this.main(),
+          start: start,
+          end: end,
+          scrub: true
+      }
+    });
+    gsap.to(layer4, {
+      y: -800, // Moves up
+      scrollTrigger: {
+          trigger: this.main(),
+          start: start,
+          end: end,
+          scrub: true,
+      }
+    });
+  }
+  public animateHomeImg(img: HTMLElement){
+  /*   let start = "top 0%" 
+    let end = "bottom 80%";
+    gsap.to(img, {
+      y: 100, // Moves up
+      scrollTrigger: {
+          trigger: this.main(),
+          start: start,
+          end: end,
+          scrub: true
+      }
+    }); */
   }
 }
