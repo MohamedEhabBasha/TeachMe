@@ -1,4 +1,6 @@
-﻿namespace Domain;
+﻿using Domain.Events;
+
+namespace Domain;
 
 public class User : Aggregate<UserId>
 {
@@ -36,5 +38,7 @@ public class User : Aggregate<UserId>
         Name = name;
         UserName = userName;
         Role = userRole;
+
+        AddDomainEvent(new UserCreatedEvent(id));
     }
 }

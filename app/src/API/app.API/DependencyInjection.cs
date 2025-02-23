@@ -1,8 +1,8 @@
 ﻿using Application.Exceptions.Handler;
-using FluentValidation;
+using Application.Services;
 using Infrastructure.Interceptors;
+using Infrastructure.Services.PhotoService;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using System.Reflection;
 
 namespace app.API;
 
@@ -18,6 +18,12 @@ public static class DependencyInjection
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
         services.AddExceptionHandler<CustomExceptionHandler>();
+
+        services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+
+        services.AddScoped<IPhotoService, PhotoService>();
+
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         return services;
     }

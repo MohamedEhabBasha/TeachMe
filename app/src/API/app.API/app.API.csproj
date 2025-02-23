@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Modules\Accounting\Infrastructure\Accounting.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\UserProfile\UserProfile.Infrastructure\UserProfile.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

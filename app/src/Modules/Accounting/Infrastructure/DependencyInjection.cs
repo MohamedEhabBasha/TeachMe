@@ -20,7 +20,7 @@ public static class DependencyInjection
         services.AddDbContext<AccountingDbContext>((sp, options) =>
         {
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-            options.UseSqlServer(connectionString);
+            options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Accounting.Infrastructure"));
         });
 
         services.AddIdentityCore<AppUser>(opt =>

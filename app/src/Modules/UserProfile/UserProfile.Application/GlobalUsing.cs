@@ -1,0 +1,9 @@
+﻿global using Domain.Events;
+global using MediatR;
+global using Microsoft.Extensions.Logging;
+global using UserProfile.Domain.UserProfiles.ValueObjects;
+global using UserProfile.Application.Contracts;
+global using Application.CQRS;
+global using UserProfile.Application.Dtos;
+global using UserProfile.Application.Exceptions;
+global using AutoMapper;

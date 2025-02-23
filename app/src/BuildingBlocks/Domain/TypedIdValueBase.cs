@@ -11,7 +11,7 @@ public record TypedIdValueBase
 
         if (value == Guid.Empty)
         {
-            throw new DomainException("Id cannot be empty.");
+            throw new DomainException("Id cannot be empty!!");
         }
 
         Value = value;

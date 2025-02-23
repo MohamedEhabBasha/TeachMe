@@ -24,7 +24,8 @@ public static class DatabaseExtentions
         }
         catch (Exception ex)
         {
-            var logger = services.GetRequiredService<ILogger>();
+            var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+            var logger = loggerFactory.CreateLogger("Accounting - Seeding Data");
             logger.LogError(ex, "An error occurred during migration");
         }
     }

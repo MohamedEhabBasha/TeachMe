@@ -47,10 +47,21 @@ public class UserRepository
 
         return await ToUserDto(user, appUser);
     }
+    public async Task<IReadOnlyCollection<UserDto>> GetUsersAsync()
+    {
+        return await context.AccountUsers
+            .AsNoTracking()
+            .Select(u => ToUserDtoWithNoJwt(u))
+            .ToListAsync();
+    }
 
     private async Task<UserDto> ToUserDto(User user, AppUser appUser)
     {
         return new UserDto(user.Id.Value, user.Name, user.UserName, await authorizationService.CreateJwtToken(appUser), user.Role.Name);
+    }
+    private static UserDto ToUserDtoWithNoJwt(User user)
+    {
+        return new UserDto(user.Id.Value, user.Name, user.UserName, "", user.Role.Name);
     }
 
     private static User CreateUser(RegisterDto registerDto, Guid id)

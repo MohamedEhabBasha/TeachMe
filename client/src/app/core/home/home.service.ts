@@ -155,7 +155,7 @@ export class HomeService {
       }
     });
     gsap.to(layer4, {
-      y: -800, // Moves up
+      y: -1000, // Moves up
       scrollTrigger: {
           trigger: this.main(),
           start: start,
@@ -165,10 +165,10 @@ export class HomeService {
     });
   }
   public animateHomeImg(img: HTMLElement){
-  /*   let start = "top 0%" 
+/*     let start = "top 0%" 
     let end = "bottom 80%";
     gsap.to(img, {
-      y: 100, // Moves up
+      y: -1600, // Moves up
       scrollTrigger: {
           trigger: this.main(),
           start: start,

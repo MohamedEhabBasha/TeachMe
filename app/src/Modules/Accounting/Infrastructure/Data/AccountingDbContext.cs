@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Accounting.Infrastructure.Data;
 
-public class AccountingDbContext(DbContextOptions options) : IdentityDbContext<AppUser, AppRole, Guid>(options)
+public class AccountingDbContext(DbContextOptions<AccountingDbContext> options) : IdentityDbContext<AppUser, AppRole, Guid>(options)
 {
     public DbSet<User> AccountUsers => Set<User>();
 
