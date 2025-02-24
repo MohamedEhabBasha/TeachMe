@@ -1,4 +1,5 @@
 ﻿using UserProfile.Application.Dtos;
+using UserProfile.Application.UserProfiles.Queries.GetFollowingInstructorsById;
 
 namespace app.API.Modules.UserProfile;
 
@@ -14,5 +15,5 @@ public record UpdateProfileFollowStatusResponse(bool IsSuccess);
 public record GetUserProfileByIdRequest(Guid Id);
 public record GetUserProfileByIdResponse(UserProfileDto UserProfileDto);
 /**------------------------------------------------------------------------**/
-public record GetFollowingInstructorsByIdRequest(Guid StudentId);
-public record GetFollowingInstructorsByIdResponse(IReadOnlyCollection<UserProfileDto> UserProfiles);
+public record GetFollowingInstructorsByIdRequest(StudentPaginationRequest StudentRequest);
+public record GetFollowingInstructorsByIdResponse(PaginatedResult<UserProfileDto> UserProfiles);

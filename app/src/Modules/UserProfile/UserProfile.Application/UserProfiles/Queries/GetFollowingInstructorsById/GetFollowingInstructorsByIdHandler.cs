@@ -6,8 +6,8 @@ public class GetFollowingInstructorsByIdHandler(IUserProfileUnitOfWork unitOfWor
     public async Task<GetFollowingInstructorsByIdResult> Handle(GetFollowingInstructorsByIdQuery query, CancellationToken cancellationToken)
     {
         var instructors = await unitOfWork.UserProfileRepository
-            .GetFollowingInstructorsByIdAsync(query.StudentId, cancellationToken);
+            .GetFollowingInstructorsByIdAsync(query.StudentRequest, cancellationToken);
 
-        return new GetFollowingInstructorsByIdResult(mapper.Map<IReadOnlyCollection<UserProfileDto>>(instructors));
+        return new GetFollowingInstructorsByIdResult(instructors);
     }
 }

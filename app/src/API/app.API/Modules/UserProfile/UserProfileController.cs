@@ -56,12 +56,12 @@ public class UserProfileController(ISender sender) : BaseController
     [HttpGet("followingInstructors")]
     public async Task<ActionResult<GetFollowingInstructorsByIdResponse>> GetFollowingInstructorsById(GetFollowingInstructorsByIdRequest request)
     {
-        var command = request.Adapt<GetFollowingInstructorsByIdQuery>();
+        //var command = request.Adapt<GetFollowingInstructorsByIdQuery>();
 
-        var result = await sender.Send(command);
+        var result = await sender.Send(new GetFollowingInstructorsByIdQuery(request.StudentRequest));
 
-        var response = result.Adapt<GetFollowingInstructorsByIdResponse>();
+        //var response = result.Adapt<GetFollowingInstructorsByIdResponse>();
 
-        return Ok(response.UserProfiles);
+        return Ok(result.UserProfiles);
     }
 }

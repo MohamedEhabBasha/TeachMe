@@ -5,7 +5,7 @@ public class GetUsersHandler(IAccountingUnitOfWork unitOfWork) : IQueryHandler<G
 {
     public async Task<GetUsersResult> Handle(GetUsersQuery query, CancellationToken cancellationToken)
     {
-        var users = await unitOfWork.UserRepository.GetUsersAsync();
+        var users = await unitOfWork.UserRepository.GetUsersAsync(query.PaginationRequest);
 
         return new GetUsersResult(users);
     }

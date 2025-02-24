@@ -7,3 +7,4 @@ global using Application.CQRS;
 global using UserProfile.Application.Dtos;
 global using UserProfile.Application.Exceptions;
 global using AutoMapper;
+global using Application.Pagination;

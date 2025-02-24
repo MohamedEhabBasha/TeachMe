@@ -1,6 +1,4 @@
-﻿using UserProfile.Application.Contracts;
-
-namespace UserProfile.Infrastructure.Data;
+﻿namespace UserProfile.Infrastructure.Data;
 
 public class UserProfileUnitOfWork(UserProfileContext context, IUserProfileRepository userProfileRepository) : IUserProfileUnitOfWork
 {

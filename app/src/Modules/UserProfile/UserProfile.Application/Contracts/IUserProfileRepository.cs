@@ -1,4 +1,6 @@
-﻿namespace UserProfile.Application.Contracts;
+﻿using UserProfile.Application.UserProfiles.Queries.GetFollowingInstructorsById;
+
+namespace UserProfile.Application.Contracts;
 
 public interface IUserProfileRepository
 {
@@ -6,5 +8,6 @@ public interface IUserProfileRepository
     Task<Domain.UserProfiles.UserProfile?> GetUserProfileWithCategoryAsync(UserProfileId profileId, CancellationToken cancellationToken);
     Task<Domain.UserProfiles.UserProfile?> GetUserProfileAsync(Guid id, CancellationToken cancellationToken);
     Task<Domain.UserProfiles.UserProfile?> GetUserProfileWithFollowersAsync(Guid id, CancellationToken cancellationToken);
-    Task<IReadOnlyCollection<Domain.UserProfiles.UserProfile>> GetFollowingInstructorsByIdAsync(Guid studentId, CancellationToken cancellationToken);
+    Task<PaginatedResult<UserProfileDto>> GetFollowingInstructorsByIdAsync
+        (StudentPaginationRequest studentRequest, CancellationToken cancellationToken);
 }

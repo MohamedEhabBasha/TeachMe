@@ -30,14 +30,14 @@ public class AccountingController(ISender sender) : BaseController
         return Created($"/{response.UserDto.Id}", response);
     }
     [HttpGet("getUsers")]
-    public async Task<ActionResult<GetUsersResponse>> GetUsers()
+    public async Task<ActionResult<GetUsersResponse>> GetUsers(PaginationRequest request)
     {
         //var command = request.Adapt<GetUsersQuery>();
 
-        var result = await sender.Send(new GetUsersQuery());
+        var result = await sender.Send(new GetUsersQuery(request));
 
-        var response = result.Adapt<GetUsersResponse>();
+        //var response = result.Adapt<GetUsersResponse>();
 
-        return Ok(response.Users);
+        return Ok(result.Users);
     }
 }

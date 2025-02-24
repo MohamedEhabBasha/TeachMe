@@ -1,3 +1,3 @@
 ﻿global using Application.CQRS;
 global using Accounting.Application.Dtos;
-global using Domain;
+global using Application.Pagination;

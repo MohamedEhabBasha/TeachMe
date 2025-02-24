@@ -1,6 +1,7 @@
 ﻿using Accounting.Application.Accounting;
 using Accounting.Application.Dtos;
 using Accounting.Infrastructure.Services;
+using Application.Pagination;
 
 namespace Accounting.Infrastructure.Data;
 
@@ -47,12 +48,17 @@ public class UserRepository
 
         return await ToUserDto(user, appUser);
     }
-    public async Task<IReadOnlyCollection<UserDto>> GetUsersAsync()
+    public async Task<PaginatedResult<UserDto>> GetUsersAsync(PaginationRequest paginationRequest)
     {
-        return await context.AccountUsers
+        var pageNumber = paginationRequest.PageNumber;
+        var pageSize =  paginationRequest.PageSize;
+
+        var query = context.AccountUsers
+            .AsQueryable()
             .AsNoTracking()
-            .Select(u => ToUserDtoWithNoJwt(u))
-            .ToListAsync();
+            .Select(u => ToUserDtoWithNoJwt(u));
+
+        return await PaginatedResult<UserDto>.CreateAsync(query, pageNumber, pageSize);
     }
 
     private async Task<UserDto> ToUserDto(User user, AppUser appUser)

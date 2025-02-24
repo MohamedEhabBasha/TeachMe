@@ -5,5 +5,5 @@ public record RegisterNewUserResponse(UserDto UserDto);
 public record LoginRequest(LoginDto LoginDto);
 public record LoginResponse(UserDto UserDto);
 
-//public record GetUsersRequest();
-public record GetUsersResponse(IReadOnlyCollection<UserDto> Users);
+//public record GetUsersRequest(PaginationRequest PaginationRequest);
+public record GetUsersResponse(PaginatedResult<UserDto> Users);

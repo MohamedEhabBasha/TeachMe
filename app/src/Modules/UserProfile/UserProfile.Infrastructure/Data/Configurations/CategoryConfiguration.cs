@@ -1,6 +1,4 @@
-﻿using UserProfile.Domain.UserProfiles.ValueObjects;
-
-namespace UserProfile.Infrastructure.Data.Configurations;
+﻿namespace UserProfile.Infrastructure.Data.Configurations;
 
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
