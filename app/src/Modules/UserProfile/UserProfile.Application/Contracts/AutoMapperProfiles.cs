@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using UserProfile.Domain.UserProfiles;
-
-namespace UserProfile.Application.Contracts;
+﻿namespace UserProfile.Application.Contracts;
 
 public class AutoMapperProfiles : Profile
 {

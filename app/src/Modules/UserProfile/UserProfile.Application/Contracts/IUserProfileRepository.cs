@@ -10,4 +10,5 @@ public interface IUserProfileRepository
     Task<Domain.UserProfiles.UserProfile?> GetUserProfileWithFollowersAsync(Guid id, CancellationToken cancellationToken);
     Task<PaginatedResult<UserProfileDto>> GetFollowingInstructorsByIdAsync
         (StudentPaginationRequest studentRequest, CancellationToken cancellationToken);
+    Task<int> GetFollowersCountByIdAsync(Guid id, CancellationToken cancellationToken);
 }

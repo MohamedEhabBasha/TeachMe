@@ -8,6 +8,12 @@ public class GetUserProfileByIdHandler(IUserProfileUnitOfWork unitOfWork, IMappe
             .GetUserProfileWithCategoryAsync(new UserProfileId(query.Id), cancellationToken)
             ?? throw new UserProfileNotFoundException(query.Id);
 
-        return new GetUserProfileByIdResult(mapper.Map<UserProfileDto>(userProfile));
+        UserProfileDto profileDto = mapper.Map<UserProfileDto>(userProfile);
+
+        var count = await unitOfWork.UserProfileRepository.GetFollowersCountByIdAsync(query.Id, cancellationToken);
+
+        profileDto = profileDto with { UserFollowsCount = count };
+
+        return new GetUserProfileByIdResult(profileDto);
     }
 }

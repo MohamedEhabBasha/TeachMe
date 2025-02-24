@@ -22,6 +22,14 @@ public class UserProfileRepository(UserProfileContext context, IMapper mapper) :
             .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Id == profileId, cancellationToken: cancellationToken);
     }
+    public async Task<int> GetFollowersCountByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var userProfileId = new UserProfileId(id);
+
+        return await context.UserFollowers
+            .CountAsync(u => u.Id == userProfileId || u.StudentId == userProfileId
+            , cancellationToken: cancellationToken);
+    }
     public async Task<Domain.UserProfiles.UserProfile?> GetUserProfileWithFollowersAsync(Guid id, CancellationToken cancellationToken)
     {
         var userProfileId = new UserProfileId(id);
