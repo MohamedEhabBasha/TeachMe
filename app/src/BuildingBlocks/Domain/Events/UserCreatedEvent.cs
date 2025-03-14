@@ -1,3 +1,3 @@
 ﻿namespace Domain.Events;
 
-public record UserCreatedEvent(Guid UserId) : IDomainEvent;
+public record UserCreatedEvent(Guid UserId, string Name, string Role) : IDomainEvent;

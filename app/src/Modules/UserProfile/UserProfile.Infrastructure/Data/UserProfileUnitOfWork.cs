@@ -1,11 +1,9 @@
-﻿namespace UserProfile.Infrastructure.Data;
+﻿using Infrastructure;
 
-public class UserProfileUnitOfWork(UserProfileContext context, IUserProfileRepository userProfileRepository) : IUserProfileUnitOfWork
+namespace UserProfile.Infrastructure.Data;
+
+public class UserProfileUnitOfWork(UserProfileContext context, IUserProfileRepository userProfileRepository)
+    : UnitOfWork(context), IUserProfileUnitOfWork
 {
     public IUserProfileRepository UserProfileRepository => userProfileRepository;
-
-    public async Task<int> CommitAsync(CancellationToken cancellationToken = default)
-    {
-        return await context.SaveChangesAsync(cancellationToken);
-    }
 }

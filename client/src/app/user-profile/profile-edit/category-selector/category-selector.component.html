@@ -1,0 +1,33 @@
+<div class="category-container">
+  <label for="categorySelect"><h4>Select Your Categories (Max: 3)</h4></label>
+
+  <!-- Select input for categories -->
+  <select
+    id="categorySelect"
+    class="form-control"
+    multiple
+    (change)="onCategoryChange($event)"
+  >
+    @for (category of availableCategories; track category) {
+    <option
+      [value]="category"
+      [selected]="selectedCategories.includes(category)"
+    >
+      {{ category }}
+    </option>
+    }
+  </select>
+
+  <!-- Display selected categories -->
+  @if (selectedCategories.length > 0) {
+  <div class="selected-categories">
+    <strong>Selected Categories: </strong>
+    @for (category of selectedCategories; track category) {
+    <span class="selected-category text-white">
+      {{ category }}
+      <span (click)="removeCategory(category)" class="remove">✖</span>
+    </span>
+    }
+  </div>
+  }
+</div>

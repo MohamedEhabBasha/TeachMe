@@ -1,6 +1,10 @@
+import { Photo } from "./photo";
+
 export interface User {
-    name: string
+    id: string;
+    name: string;
     username: string;
     token: string;
     role: string;
+    photo: Photo;
 }

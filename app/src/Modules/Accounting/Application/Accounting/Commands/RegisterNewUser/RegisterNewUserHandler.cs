@@ -4,7 +4,7 @@ public class RegisterNewUserHandler(IAccountingUnitOfWork unitOfWork) : ICommand
 {
     public async Task<RegisterNewUserResult> Handle(RegisterNewUserCommand command, CancellationToken cancellationToken)
     {
-        var userDto = await unitOfWork.UserRepository.AddAsync(command.RegisterDto);
+        var userDto = await unitOfWork.UserRepository.Register(command.RegisterDto);
 
         await unitOfWork.CommitAsync(cancellationToken);
 

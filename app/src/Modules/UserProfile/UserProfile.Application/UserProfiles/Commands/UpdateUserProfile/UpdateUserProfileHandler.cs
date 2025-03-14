@@ -1,7 +1,4 @@
-﻿using Application.Exceptions;
-using UserProfile.Application.Dtos;
-
-namespace UserProfile.Application.UserProfiles.Commands.UpdateUserProfile;
+﻿namespace UserProfile.Application.UserProfiles.Commands.UpdateUserProfile;
 
 public class UpdateUserProfileHandler(IUserProfileUnitOfWork unitOfWork) : ICommandHandler<UpdateUserProfileCommand, UpdateUserProfileResult>
 {
@@ -9,9 +6,13 @@ public class UpdateUserProfileHandler(IUserProfileUnitOfWork unitOfWork) : IComm
     {
         var userProfileDto = command.UserProfileDto;
 
-        var profileId = new UserProfileId(userProfileDto.Id);
+        var spec = new UserProfilesSpecification
+        (
+            new UserProfileSpecParams(false, false, ["category"], u => u.Id == new UserProfileId(userProfileDto.Id))
+        );
 
-        var userProfile = await unitOfWork.UserProfileRepository.GetUserProfileWithCategoryAsync(profileId, cancellationToken)
+        var userProfile = await unitOfWork.UserProfileRepository
+            .GetEntityWithSpec(spec, cancellationToken)
             ?? throw new UserProfileNotFoundException(userProfileDto.Id);
 
         userProfile.Update(userProfileDto.Introduction, userProfileDto.Description);
@@ -22,7 +23,7 @@ public class UpdateUserProfileHandler(IUserProfileUnitOfWork unitOfWork) : IComm
 
     }
 
-    private static void UpdateCategories(Domain.UserProfiles.UserProfile userProfile, List<CategoryDto> newCategories)
+    private static void UpdateCategories(Userprofile userProfile, List<CategoryDto> newCategories)
     {
         var currentCategoriesNames = userProfile.Categories.Select(c => c.Name).ToList();
 

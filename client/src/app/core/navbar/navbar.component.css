@@ -21,3 +21,9 @@
 .logo {
     font-size: 1.5rem;
 }
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer;
+}
+.dropdown-toggle {
+    width: 7rem;
+}

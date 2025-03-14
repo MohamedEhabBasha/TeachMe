@@ -1,0 +1,44 @@
+<div class="container">
+  <app-photo-edit />
+</div>
+<section class="container mt-2 mb-2">
+  <div class="edit-container row">
+    <h3 class="text-center mt-4">Edit Profile</h3>
+    <form class="col-12" id="editForm" #editForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="input">
+        <h4>Introduction</h4>
+        <textarea
+          class="textarea"
+          name="introduction"
+          [(ngModel)]="profile().introduction"
+          rows="4"
+        >
+        </textarea>
+      </div>
+      <div class="input">
+        <h4>Description</h4>
+        <textarea
+          class="textarea"
+          name="description"
+          [(ngModel)]="profile().description"
+          rows="4"
+        >
+        </textarea>
+      </div>
+      <app-category-selector
+        (newCategories)="categoryUpdateEvent($event)"
+        [currentSelectedCategories]="currentSelectedCategories"
+      />
+      <div class="d-flex justify-content-center">
+        <button
+          [disabled]="!(editForm.dirty  || (profile().categories.length))"
+          form="editForm"
+          type="submit"
+          class="btn btn-success col-3 mt-3"
+        >
+          Save changes
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

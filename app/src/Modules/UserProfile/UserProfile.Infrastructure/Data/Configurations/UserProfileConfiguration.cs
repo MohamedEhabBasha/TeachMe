@@ -10,6 +10,10 @@ public class UserProfileConfiguration : IEntityTypeConfiguration<Domain.UserProf
             profileId => profileId.Value,
             dbId => new UserProfileId(dbId));
 
+        builder.Property(u => u.Name).HasMaxLength(50).IsRequired();
+
+        builder.Property(u => u.Role).HasMaxLength(50).IsRequired();
+
         builder.Property(u => u.Introduction).HasMaxLength(255);
 
         builder.Property(u => u.Description).HasMaxLength(600);

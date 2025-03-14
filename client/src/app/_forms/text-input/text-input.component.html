@@ -1,6 +1,11 @@
 <div class="form-control mb-0">
   <label>{{ label() }}</label>
-  <input [type]="type()" [formControl]="control" placeholder="{{ label() }}" />
+  <input
+    [type]="type()"
+    [formControl]="control"
+    [attr.autocomplete]="type() === 'password' ? 'current-password' : 'off'"
+    placeholder="{{ label() }}"
+  />
   @if (controlIsInvalid && control.hasError('required')){
   <p class="form-control-error mb-0">Please enter a {{ label() }}</p>
   } @if (controlIsInvalid && control.hasError('minlength')) {
@@ -9,8 +14,9 @@
     {{control.errors?.['minlength'].requiredLength}} characters
   </p>
   }@if (controlIsInvalid && control.hasError('passwordStrength')) {
-    <p class="form-control-error mb-5 mb-lg-3">
-      {{ label() }} must contain at least one uppercase, lowercase, special character, and a digit
-    </p>
-    }
+  <p class="form-control-error mb-5 mb-lg-3">
+    {{ label() }} must contain at least one uppercase, lowercase, special
+    character, and a digit
+  </p>
+  }
 </div>

@@ -8,3 +8,5 @@ global using UserProfile.Application.Dtos;
 global using UserProfile.Application.Exceptions;
 global using AutoMapper;
 global using Application.Pagination;
+global using UserProfile.Application.Specification;
+global using Userprofile = UserProfile.Domain.UserProfiles.UserProfile;

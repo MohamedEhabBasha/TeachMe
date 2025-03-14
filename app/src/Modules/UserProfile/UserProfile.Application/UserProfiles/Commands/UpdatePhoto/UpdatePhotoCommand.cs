@@ -1,4 +1,6 @@
-﻿namespace UserProfile.Application.UserProfiles.Commands.UpdatePhoto;
+﻿using Microsoft.AspNetCore.Http;
 
-public record UpdateUserProfilePhotoCommand(PhotoDto PhotoDto) : ICommand<UpdateUserProfilePhotoResult>;
-public record UpdateUserProfilePhotoResult(bool IsSuccess);
+namespace UserProfile.Application.UserProfiles.Commands.UpdatePhoto;
+
+public record UpdateUserProfilePhotoCommand(Guid UserId, IFormFile File) : ICommand<UpdateUserProfilePhotoResult>;
+public record UpdateUserProfilePhotoResult(PhotoDto PhotoDto);

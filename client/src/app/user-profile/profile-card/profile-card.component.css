@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+p {
+    margin: 0;
+    padding: 0;
+}
+.main-color {
+    color: var(--primary-color);
+}
+.card-section {
+    margin-top: 1.5rem;
+}
+.title {
+    font-family: 'Courier New', Courier, monospace;
+}
+.info-text {
+    border: 1px solid var(--primary-color);
+    font-weight: bold;
+    font-size: 1.3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+.sec-text {
+    color: white;
+    background-color: var(--primary-color);
+    font-size: 1.3rem;
+}
+.edit-button {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.edit-button:hover {
+    color: white;
+    background-color: var(--secondary-color);
+}

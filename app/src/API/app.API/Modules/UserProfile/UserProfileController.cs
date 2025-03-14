@@ -4,50 +4,33 @@ using UserProfile.Application.UserProfiles.Commands.UpdatePhoto;
 using UserProfile.Application.UserProfiles.Commands.UpdateUserProfile;
 using UserProfile.Application.UserProfiles.Queries.GetFollowingInstructorsById;
 using UserProfile.Application.UserProfiles.Queries.GetUserProfileById;
+using UserProfile.Application.UserProfiles.Queries.GetUserProfiles;
 
 namespace app.API.Modules.UserProfile;
 
 public class UserProfileController(ISender sender) : BaseController
 {
-    [HttpPut]
-    public async Task<ActionResult<UpdateUserProfileResponse>> UpdateUserProfile(UpdateUserProfileRequest request)
+    [HttpGet]
+    public async Task<ActionResult<GetUserProfilesResponse>> GetUserProfiles(GetUserProfilesRequest request)
     {
-        var command = request.Adapt<UpdateUserProfileCommand>();
+        //var command = request.Adapt<GetUserProfilesQuery>();
 
-        var result = await sender.Send(command);
+        var result = await sender.Send(new GetUserProfilesQuery
+            (Category: request.Category, MostFollowed: request.MostFollowed, Search: request.Search) { 
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize,
+            });
 
-        var response = result.Adapt<UpdateUserProfileResponse>();
+       // var response = result.Adapt<GetUserProfilesResponse>(); 
 
-        return response.IsSuccess ? Ok(response) : BadRequest(response);
-    }
-    [HttpPut("updateProfilePhoto")]
-    public async Task<ActionResult<UpdateUserProfilePhotoResponse>> UpdateUserProfilePhoto(UpdateUserProfilePhotoRequest request)
-    {
-        var command = request.Adapt<UpdateUserProfilePhotoCommand>();
-
-        var result = await sender.Send(command);
-
-        var response = result.Adapt<UpdateUserProfilePhotoResponse>();
-
-        return response.IsSuccess ? Ok(response) : BadRequest(response);
-    }
-    [HttpPut("updateProfileFollowStatus")]
-    public async Task<ActionResult<UpdateProfileFollowStatusResponse>> UpdateUserProfileFollowStatus(UpdateProfileFollowStatusRequest request)
-    {
-        var command = request.Adapt<UpdateFollowStatusCommand>();
-
-        var result = await sender.Send(command);
-
-        var response = result.Adapt<UpdateProfileFollowStatusResponse>();
-
-        return response.IsSuccess ? Ok(response) : BadRequest(response);
+        return Ok(result.Users);
     }
     [HttpGet("userProfileById")]
-    public async Task<ActionResult<GetUserProfileByIdResponse>> GetUserProfileById(GetUserProfileByIdRequest request)
+    public async Task<ActionResult<GetUserProfileByIdResponse>> GetUserProfileById([FromQuery] Guid id)
     {
-        var command = request.Adapt<GetUserProfileByIdQuery>();
+        //var command = request.Adapt<GetUserProfileByIdQuery>();
 
-        var result = await sender.Send(command);
+        var result = await sender.Send(new GetUserProfileByIdQuery(id));
 
         var response = result.Adapt<GetUserProfileByIdResponse>();
 
@@ -63,5 +46,38 @@ public class UserProfileController(ISender sender) : BaseController
         //var response = result.Adapt<GetFollowingInstructorsByIdResponse>();
 
         return Ok(result.UserProfiles);
+    }
+    [HttpPut]
+    public async Task<ActionResult<UpdateUserProfileResponse>> UpdateUserProfile(UpdateUserProfileRequest request)
+    {
+        var command = request.Adapt<UpdateUserProfileCommand>();
+
+        var result = await sender.Send(command);
+
+        var response = result.Adapt<UpdateUserProfileResponse>();
+
+        return response.IsSuccess ? Ok(response) : BadRequest(response);
+    }
+    [HttpPost("updateProfilePhoto")]
+    public async Task<ActionResult<UpdateUserProfilePhotoResponse>> UpdateUserProfilePhoto([FromForm] UpdateUserProfilePhotoRequest request)
+    {
+        //var command = request.Adapt<UpdateUserProfilePhotoCommand>();
+
+        var result = await sender.Send(new UpdateUserProfilePhotoCommand(request.UserId, request.File));
+
+        var response = result.Adapt<UpdateUserProfilePhotoResponse>();
+
+        return Ok(response.PhotoDto);
+    }
+    [HttpPut("updateProfileFollowStatus")]
+    public async Task<ActionResult<UpdateProfileFollowStatusResponse>> UpdateUserProfileFollowStatus(UpdateProfileFollowStatusRequest request)
+    {
+        var command = request.Adapt<UpdateFollowStatusCommand>();
+
+        var result = await sender.Send(command);
+
+        var response = result.Adapt<UpdateProfileFollowStatusResponse>();
+
+        return response.IsSuccess ? Ok(response) : BadRequest(response);
     }
 }

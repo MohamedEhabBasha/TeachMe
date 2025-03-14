@@ -39,6 +39,6 @@ public class User : Aggregate<UserId>
         UserName = userName;
         Role = userRole;
 
-        AddDomainEvent(new UserCreatedEvent(id));
+        AddDomainEvent(new UserCreatedEvent(id, Name, Role.Name));
     }
 }

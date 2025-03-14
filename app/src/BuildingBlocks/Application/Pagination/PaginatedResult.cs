@@ -21,7 +21,7 @@ public class PaginatedResult<TEntity> : List<TEntity>
     public static async Task<PaginatedResult<TEntity>> CreateAsync(IQueryable<TEntity> source, int pageNumber,
     int pageSize, CancellationToken cancellationToken = default)
     {
-        var count = await source.CountAsync();
+        var count = await source.CountAsync(cancellationToken);
         var items = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
 
         return new PaginatedResult<TEntity>(items, count, pageNumber, pageSize);

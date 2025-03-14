@@ -4,15 +4,16 @@ public class GetUserProfileByIdHandler(IUserProfileUnitOfWork unitOfWork, IMappe
 {
     public async Task<GetUserProfileByIdResult> Handle(GetUserProfileByIdQuery query, CancellationToken cancellationToken)
     {
+        var spec = new UserProfilesSpecification
+            (
+                new UserProfileSpecParams(false, false, ["category", "userFollows"], u => u.Id == new UserProfileId(query.Id))
+            );
+
         var userProfile = await unitOfWork.UserProfileRepository
-            .GetUserProfileWithCategoryAsync(new UserProfileId(query.Id), cancellationToken)
+            .GetEntityWithSpec(spec, cancellationToken)
             ?? throw new UserProfileNotFoundException(query.Id);
 
         UserProfileDto profileDto = mapper.Map<UserProfileDto>(userProfile);
-
-        var count = await unitOfWork.UserProfileRepository.GetFollowersCountByIdAsync(query.Id, cancellationToken);
-
-        profileDto = profileDto with { UserFollowsCount = count };
 
         return new GetUserProfileByIdResult(profileDto);
     }

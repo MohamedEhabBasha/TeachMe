@@ -1,0 +1,28 @@
+<tabset class="profile-tabset" #userTabs [justified]="true">
+  <tab heading="ABOUT " class="text">
+    @if (profile.profile()?.description) {
+    <p class="info-text">
+      {{ profile.profile()?.description }}
+    </p>
+    }@else {
+    <p class="info-text">Hello people!!!</p>
+    }
+  </tab>
+  @if (accountService.currentUser()?.role === 'Instructor') {
+  <tab heading="BLOGS " class="text">
+    <p class="info-text">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis veniam
+      voluptatum ea, soluta cumque dolorem libero dolor quidem quis natus
+      ducimus cum modi dolores repellat architecto, eaque aut numquam ipsam!
+    </p>
+  </tab>
+  }@else {
+  <tab heading="FOLLOWING " class="text">
+    <p class="info-text">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis veniam
+      voluptatum ea, soluta cumque dolorem libero dolor quidem quis natus
+      ducimus cum modi dolores repellat architecto, eaque aut numquam ipsam!
+    </p>
+  </tab>
+  }
+</tabset>

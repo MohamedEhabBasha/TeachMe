@@ -5,7 +5,7 @@ public class LoginHandler(IUserRepository userRepository) : IQueryHandler<LoginQ
 {
     public async Task<LoginResult> Handle(LoginQuery query, CancellationToken cancellationToken)
     {
-        var userDto = await userRepository.LoginAsync(query.LoginDto);
+        var userDto = await userRepository.Login(query.LoginDto);
 
         return new LoginResult(userDto);
     }

@@ -1,0 +1,27 @@
+.category-container {
+    padding: 1rem;
+}
+.form-control {
+    border: 1px solid var(--primary-color);
+}
+h4 {
+    letter-spacing: 1px;
+    font-family: 'QuickSand';
+    color: var(--primary-color);
+}
+.selected-categories {
+    margin-top: 10px;
+}
+.selected-category {
+    background-color: var(--primary-color);
+    /* border: 1px solid var(--primary-color); */
+    border-radius: 10%;
+    padding: 0.2rem;
+    margin-right: 0.2rem;
+}
+.remove {
+    cursor: pointer;
+    margin-left: 5px;
+    color: white;
+    font-weight: bold;
+}

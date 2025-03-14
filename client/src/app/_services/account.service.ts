@@ -27,10 +27,11 @@ export class AccountService {
   }
 
   login(model: any) {
-    return this.http.post<User>(this.baseUrl + 'accounting/login', model).pipe(
+    return this.http.post<any>(this.baseUrl + 'accounting/login', model).pipe(
       map(user => {
         if (user) {
-          this.setCurrentUser(user);
+          console.log(user.userDto);
+          this.setCurrentUser(user.userDto);
         }
       })
     );

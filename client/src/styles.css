@@ -123,4 +123,20 @@ input.ng-invalid.ng-touched.ng-dirty {
     gap: 1rem;
 }
 /* ----------------- END Form Styles ----------------- */
-
+/* ----------------- START profile-tabset ----------------- */
+.profile-tabset {
+    height: 100%;
+    display: block;
+}
+.profile-tabset .nav-link.active{
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+.profile-tabset .nav-link{
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+/* ----------------- END profile-tabset ----------------- */

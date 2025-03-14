@@ -9,7 +9,7 @@ public class UserRepository
     (AccountingDbContext context, UserManager<AppUser> userManager, IAuthenticationService authorizationService) 
     : IUserRepository
 {
-    public async Task<UserDto> AddAsync(RegisterDto registerDto)
+    public async Task<UserDto> Register(RegisterDto registerDto)
     {
         if (await userManager.FindByNameAsync(registerDto.UserName) is not null)
             throw new BadRequestException("Username is already registered !");
@@ -33,7 +33,7 @@ public class UserRepository
        return await ToUserDto(user, appUser);
     }
 
-    public async Task<UserDto> LoginAsync(LoginDto loginDto)
+    public async Task<UserDto> Login(LoginDto loginDto)
     {
         var appUser = await userManager.Users
             .FirstOrDefaultAsync(x => x.NormalizedUserName == loginDto.UserName.ToUpper());

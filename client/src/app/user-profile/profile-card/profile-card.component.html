@@ -1,0 +1,34 @@
+<div class="card text-center shadow-lg mt-4">
+  <div class="card-body">
+    <div class="title main-color">
+      <h5 class="card-title fw-bold">{{accountService.currentUser()?.role === 'Instructor'? 'Instructor' : 'Student'}}</h5>
+    </div>
+    <div class="container">
+      <div class="row card-section">
+        <p class="info-text col-4 main-color">Age:</p>
+        <p class="col-8 sec-text">12 Years</p>
+      </div>
+
+      <div class="row card-section">
+        <p class="col-4 sec-text">{{profileService.profile()?.interestedUsers}}</p>
+        @if (accountService.currentUser()?.role === 'Instructor'){
+          <p class="info-text col-8 main-color">Followers</p>
+        }@else {
+          <p class="info-text col-8 main-color">Following</p>
+        }
+      </div>
+      <div class="row card-section">
+        <p class="sec-text col-12 main-color">Categories</p>
+      </div>
+      <div class="row card-section border-bottom">
+        <div class="col-12 d-flex flex-wrap justify-content-between p-0">
+          @for (category of profileService.profile()?.categories; track $index) {
+            <h5 class="main-color p-2">{{category.name}}</h5>
+          }
+
+        </div>
+      </div>
+      <button class="btn edit-button mt-3 fw-bold" routerLink="/userprofile/edit">Edit</button>
+    </div>
+  </div>
+</div>

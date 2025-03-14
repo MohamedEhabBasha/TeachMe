@@ -1,0 +1,8 @@
+.main {
+    border-bottom: 2px solid var(--primary-color);
+}
+h3 {
+    letter-spacing: 1px;
+    font-family: 'QuickSand';
+    color: var(--primary-color);
+}

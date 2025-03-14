@@ -1,7 +1,6 @@
 ﻿using Application.Exceptions;
 using Application.Services;
 
-
 namespace UserProfile.Application.UserProfiles.Commands.UpdatePhoto;
 
 public class UpdatePhotoHandler(IUserProfileUnitOfWork unitOfWork, IPhotoService photoService)
@@ -9,17 +8,17 @@ public class UpdatePhotoHandler(IUserProfileUnitOfWork unitOfWork, IPhotoService
 {
     public async Task<UpdateUserProfilePhotoResult> Handle(UpdateUserProfilePhotoCommand command, CancellationToken cancellationToken)
     {
-        var photoDto = command.PhotoDto;
+        var spec = new UserProfilesSpecification(new UserProfileSpecParams(false, false, [], u => u.Id == new UserProfileId(command.UserId)));
 
-        var userProfile = await unitOfWork.UserProfileRepository.GetUserProfileAsync(photoDto.Id, cancellationToken)
-            ?? throw new UserProfileNotFoundException(photoDto.Id);
+        var userProfile = await unitOfWork.UserProfileRepository.GetEntityWithSpec(spec, cancellationToken)
+            ?? throw new UserProfileNotFoundException(command.UserId);
 
         if (!string.IsNullOrEmpty(userProfile.Photo.PublicId))
         {
             await photoService.DeletePhotoAsync(userProfile.Photo.PublicId);
         }
 
-        var result = await photoService.AddPhotoAsync(photoDto.File);
+        var result = await photoService.AddPhotoAsync(command.File);
 
         if (result.Error != null) throw new BadRequestException(result.Error.Message);
 
@@ -27,6 +26,9 @@ public class UpdatePhotoHandler(IUserProfileUnitOfWork unitOfWork, IPhotoService
 
         userProfile.UpdatePhoto(photo);
 
-        return new UpdateUserProfilePhotoResult(await unitOfWork.CommitAsync(cancellationToken) > 0);
+        if (await unitOfWork.CommitAsync(cancellationToken) > 0)
+            return new UpdateUserProfilePhotoResult(new (photo.Url!, photo.PublicId!));
+
+        throw new BadRequestException("Problem while uploading the photo!!");
     }
 }

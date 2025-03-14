@@ -2,7 +2,7 @@
 
 public interface IUserRepository
 {
-    Task<UserDto> AddAsync(RegisterDto registerDto);
-    Task<UserDto> LoginAsync(LoginDto loginDto);
+    Task<UserDto> Register(RegisterDto registerDto);
+    Task<UserDto> Login(LoginDto loginDto);
     Task<PaginatedResult<UserDto>> GetUsersAsync(PaginationRequest paginationRequest);
 }

@@ -63,6 +63,16 @@ namespace UserProfile.Infrastructure.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.ComplexProperty<Dictionary<string, object>>("Photo", "UserProfile.Domain.UserProfiles.UserProfile.Photo#Photo", b1 =>
                         {
                             b1.IsRequired();

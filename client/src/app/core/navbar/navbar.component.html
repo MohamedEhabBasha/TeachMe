@@ -1,15 +1,31 @@
-<nav class="nav navbar navbar-expand-lg px-3">
-    <div class="container-fluid">
-        <a class="logo navbar-brand text-white" href="">TeachMe</a>
-        <div class="navbar-center mt-5">
-            <img src="user.png" alt="Logo" class="nav-image">
-        </div>
-        <div class="ms-auto">
-            @if (!accountService.currentUser()){
-                <a class="get-started btn text-white" (click)="getStatred()">Get Started</a>
-            }@else {
-                <a class="get-started btn text-white" (click)="logout()">Logout</a>
-            }
-        </div>
+<nav class="nav navbar navbar-expand-lg fixed-top px-5">
+  <div class="container-fluid">
+    <a class="logo navbar-brand text-white" href="">TeachMe</a>
+    <div class="navbar-center mt-5">
+      <img src="user.png" alt="Logo" class="nav-image" />
     </div>
+    <div class="ms-auto">
+      @if (!accountService.currentUser()){
+      <a class="get-started btn text-white" (click)="getStatred()"
+        >Get Started</a
+      >
+      }@else {
+      <div class="dropdown d-inline-block p-0" bsDropdown>
+        <button class="btn text-white dropdown-toggle" bsDropdownToggle>
+          {{accountService.currentUser()?.name}}
+        </button>
+        <div class="dropdown-menu" *bsDropdownMenu>
+          <a class="dropdown-item" routerLink="/userprofile">Your Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</nav>
+<nav class="nav navbar navbar-expand-lg px-5">
+  <div class="container-fluid">
+    <a class="logo navbar-brand text-white" href="">TeachMe</a>
+  </div>
 </nav>

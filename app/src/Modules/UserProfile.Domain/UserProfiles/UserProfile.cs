@@ -8,16 +8,19 @@ public class UserProfile : Aggregate<UserProfileId>
     private readonly List<UserFollow> _userFollowers = [];
     public IReadOnlyList<UserFollow> UserFollowers => _userFollowers.AsReadOnly();
 
-
+    public string Name { get; private set; } = default!;
+    public string Role { get; private set; } = default!;
     public string? Introduction { get; private set; }
     public string? Description { get; private set; }
     public Photo Photo { get; private set; } = default!;
     
-    public static UserProfile Create(Guid id)
+    public static UserProfile Create(Guid id, string name, string role)
     {
         var userProfile = new UserProfile
         {
             Id = new UserProfileId(id),
+            Name = name,
+            Role = role,      
             Photo = new Photo()    // EF Core does not support null complex properties
         };
 
